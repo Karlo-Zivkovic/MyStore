@@ -1,0 +1,59 @@
+<div class="relative">
+  <div class="bg-gray-100 border-x flex items-center justify-between h-16 px-6">
+    <a routerLink="home" class="cursor-pointer font-medium text-xl">My store</a>
+    <button
+      class="cursor-pointer relative rounded-full p-2 flex justify-center items-center hover:bg-gray-200"
+      (click)="toggleCart()"
+    >
+      <p
+        *ngIf="getTotalItems() !== 0"
+        class="absolute text-center font-semibold right-0 -top-1.5 text-white rounded-full bg-red-500 text-sm px-1.5"
+      >
+        {{ getTotalItems() }}
+      </p>
+      <mat-icon> shopping_cart</mat-icon>
+    </button>
+  </div>
+  <div
+    class="absolute z-10 p-3 divide-y top-14 right-4 rounded-md w-60 bg-white shadow-md h-content"
+    [@cartAnimation]="cartState"
+  >
+    <div class="pb-2 flex justify-between items-center">
+      <p>{{ getTotalItems() }} items</p>
+      <button (click)='viewCart()' class="hover:bg-gray-100 rounded-md p-1" routerLink="/cart">
+        View Cart
+      </button>
+    </div>
+    <p *ngIf="!cart.length" class="py-4 italic">Continue Shopping :)</p>
+    <div *ngIf="cart.length" class="py-2">
+      <li
+        *ngFor="let product of cart"
+        class="flex justify-between items-center gap-3 py-2"
+      >
+        <p>
+          {{ product.title
+          }}<span class="font-medium text-lg"> -- x{{ product.quantity }}</span>
+        </p>
+        <p class="text-sm">{{ getTotalProductCost(product) | currency }}</p>
+      </li>
+    </div>
+    <div class="flex justify-between items-center py-2">
+      <p>Total:</p>
+      <p class="font-semibold">{{ getTotalProductsCost() | currency }}</p>
+    </div>
+    <div class="flex justify-between pt-3">
+      <button
+        (click)="clearCart()"
+        class="bg-rose-600 text-white rounded-full w-9 h-9 hover:bg-rose-800 transition-all duration-200"
+      >
+        <mat-icon>remove_shopping_cart</mat-icon>
+      </button>
+      <button
+        routerLink="cart"
+        class="bg-green-600 text-white rounded-full w-9 h-9 hover:bg-green-800 transition-all duration-200"
+      >
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

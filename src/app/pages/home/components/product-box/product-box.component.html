@@ -1,0 +1,35 @@
+<div
+  *ngIf="product !== undefined"
+  class="rounded-md shadow-md p-3 flex gap-3 bg-white my-2"
+  [ngClass]="{
+    'flex-col': !fullWidthMode,
+    'flex-row': fullWidthMode
+  }"
+>
+  <img
+    [src]="product.image"
+    alt="product"
+    [height]="fullWidthMode ? 'h-[200px]' : 'h-[360px]'"
+    class="mx-auto h-[200px]"
+  />
+  <div class="flex flex-col justify-between w-full" [ngClass]="">
+    <p class="capitalize text-xs" *ngIf="fullWidthMode">
+      {{ product.category }}
+    </p>
+    <p class="truncate hover:whitespace-normal">
+      {{ product.title }}
+    </p>
+    <p class="text-sm" *ngIf="fullWidthMode">
+      {{ product.description }}
+    </p>
+    <div class="flex justify-between items-center">
+      <p class="text-red-400">{{ product.price | currency }}</p>
+      <button
+        (click)="addToCart(product)"
+        class="text-gray-500 rounded-full w-9 h-9 hover:bg-gray-200 p-2 flex justify-center items-center"
+      >
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

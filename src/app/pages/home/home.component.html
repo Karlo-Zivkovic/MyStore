@@ -1,0 +1,94 @@
+<div class="flex">
+  <app-left-filter
+    (categoryEmiter)="onGetCategory($event)"
+    class="my-4 mx-4"
+  ></app-left-filter>
+
+  <div class="relative flex flex-col flex-1 p-8 bg-gray-50 gap-10">
+    <div
+      class="w-full flex justify-between items-center py-2 px-3 mx-auto bg-white rounded-md h-14 shadow-md"
+    >
+      <button
+        (click)="toggleSort()"
+        class="flex justify-between py-2 px-2 rounded-md hover:bg-gray-100"
+      >
+        <p>Sort by</p>
+      </button>
+      <div
+        class="bg-white p-2 shadow-md flex flex-col rounded-md absolute left-10 top-24 w-32"
+        [@sortAnimation]="sortState"
+      >
+        <button
+          (click)="updateSort('desc')"
+          class="mb-2 p-1 hover:bg-gray-100 cursor-pointer"
+        >
+          desc
+        </button>
+        <button
+          (click)="updateSort('asc')"
+          class="mt-2 p-1 hover:bg-gray-100 cursor-pointer"
+        >
+          asc
+        </button>
+      </div>
+      <div class="relative flex items-center justify-between gap-5">
+        <button
+          class="hover:bg-gray-100 cursor-pointer py-2 px-2 rounded-md"
+          (click)="toggleNumOfShownProducts()"
+        >
+          show {{ limit }}
+        </button>
+        <div
+          class="absolute right-24 top-14 bg-white rounded-md shadow-md p-2 w-20 flex flex-col gap-2"
+          [@numOfShownProductsAnimation]="numOfShownProducts"
+        >
+          <button (click)="updateLimit(12)" class="hover:bg-gray-100">
+            12
+          </button>
+          <button (click)="updateLimit(24)" class="hover:bg-gray-100">
+            24
+          </button>
+          <button (click)="updateLimit(36)" class="hover:bg-gray-100">
+            36
+          </button>
+        </div>
+        <div class="flex items-center gap-2">
+          <button
+            (click)="handleColsChange(1)"
+            class="flex items-center hover:bg-gray-100 p-2 rounded-md"
+          >
+            <mat-icon>view_list</mat-icon>
+          </button>
+          <button
+            (click)="handleColsChange(3)"
+            class="flex items-center hover:bg-gray-100 p-2 rounded-md"
+          >
+            <mat-icon>view_module</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+      role="alert"
+      *ngIf="error"
+    >
+      <span class="block sm:inline">Something went wrong!</span>
+      <p class="">{{ error }}</p>
+    </div>
+    <p *ngIf="isLoading && !error" class="text-center text-xl">Loading...</p>
+    <div
+      *ngIf="!error"
+      [ngClass]="{
+        'flex flex-col gap-4': cols === 1,
+        'grid grid-cols-3 gap-4': cols === 3
+      }"
+    >
+      <app-product-box
+        *ngFor="let product of products"
+        [product]="product"
+        [fullWidthMode]="cols === 1"
+      ></app-product-box>
+    </div>
+  </div>
+</div>

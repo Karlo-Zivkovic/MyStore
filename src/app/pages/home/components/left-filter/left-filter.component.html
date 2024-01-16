@@ -1,0 +1,18 @@
+<mat-expansion-panel
+  (opened)="panelOpenState = true"
+  (closed)="panelOpenState = false"
+  class="p-3"
+>
+  <mat-expansion-panel-header>
+    <mat-panel-title> CATEGORIES </mat-panel-title>
+  </mat-expansion-panel-header>
+  <div class="mt-4 flex flex-col">
+    <button
+      class="p-2 capitalize hover:bg-gray-100 cursor-pointer"
+      *ngFor="let category of categories"
+      (click)="setCategory(category)"
+    >
+      {{ category }}
+    </button>
+  </div>
+</mat-expansion-panel>

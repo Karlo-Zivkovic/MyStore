@@ -1,0 +1,72 @@
+<div *ngIf="cart.length" class="flex flex-col px-3 divide-y">
+  <div
+    class="grid grid-cols-[1.6fr_3fr_0.9fr_0.9fr_0.9fr_1.5fr] py-2 items-center text-sm font-medium px-2"
+  >
+    <span>Product</span>
+    <span>Name</span>
+    <span>Price</span>
+    <span>Quantity</span>
+    <span>Total</span>
+    <button
+      (click)="clearCart()"
+      class="font-medium shadow-md bg-red-600 hover:bg-red-500 transition-all duration-300 w-20 text-white rounded-md p-2 justify-self-end"
+    >
+      Clear All
+    </button>
+  </div>
+  <div
+    *ngFor="let item of cart"
+    class="grid items-center grid-cols-[1.6fr_3fr_0.9fr_0.9fr_0.9fr_1.5fr]"
+  >
+    <img class="w-[100px] my-5" [src]="item.image" alt="product image" />
+    <p>{{ item.title }}</p>
+    <p>{{ item.price | currency }}</p>
+    <div class="flex gap-2">
+      <button (click)="decreaseQuantity(item)">
+        <mat-icon class="text-black">remove</mat-icon>
+      </button>
+      <p>{{ item.quantity }}</p>
+      <button (click)="onAddQuantity(item)">
+        <mat-icon class="text-black">add</mat-icon>
+      </button>
+    </div>
+    <p>{{ totalPerItem(item) | currency }}</p>
+    <button
+      class="p-2 flex items-center justify-center w-[3rem] mx-auto"
+      (click)="removeItemFromCart(item)"
+    >
+      <mat-icon
+        class="bg-red-500 text-white rounded-full hover:bg-red-400 transition-all duration-200"
+        >close</mat-icon
+      >
+    </button>
+  </div>
+  <div
+    class="py-2 grid grid-cols-[1.6fr_3fr_0.9fr_0.9fr_0.9fr_1.5fr] items-center"
+  >
+    <button
+      class="hover:bg-gray-50 hover:shadow-lg rounded-md transition-all duration-300 shadow-md bg-white p-2 w-40"
+      routerLink="/home"
+    >
+      Continue shopping
+    </button>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p class="font-medium">{{ totalCartCost() | currency }}</p>
+    <button
+      class="shadow-md bg-blue-600 font-medium hover:bg-blue-500 transition-all duration-300 w-44 text-white rounded-md p-2 justify-self-end"
+    >
+      Process to Checkout
+    </button>
+  </div>
+</div>
+<div class="p-3 flex items-center gap-4" *ngIf="!cart.length">
+  <p>Your cart is empty.</p>
+  <button
+    class="hover:bg-gray-50 hover:shadow-lg rounded-md transition-all duration-300 shadow-md bg-white p-2 w-40"
+    routerLink="/home"
+  >
+    Continue shopping
+  </button>
+</div>
