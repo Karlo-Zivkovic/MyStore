@@ -1,5 +1,5 @@
 <h1>Description</h1>
-Social network app clone
+Filtering the items based on category. Choosing different number of displayed items. Sorting by ascending/descending. Adding to cart, removing from cart. Viewing the cart page.
 
 <br />
 
