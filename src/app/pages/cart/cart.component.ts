@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [RouterModule, CommonModule, MatIconModule],
   templateUrl: './cart.component.html',
 })
+
 export class CartComponent implements OnInit {
   cart: Product[] = [];
 

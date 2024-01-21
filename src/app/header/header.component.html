@@ -20,7 +20,11 @@
   >
     <div class="pb-2 flex justify-between items-center">
       <p>{{ getTotalItems() }} items</p>
-      <button (click)='viewCart()' class="hover:bg-gray-100 rounded-md p-1" routerLink="/cart">
+      <button
+        (click)="viewCart()"
+        class="hover:bg-gray-100 rounded-md p-1"
+        routerLink="/cart"
+      >
         View Cart
       </button>
     </div>
@@ -50,6 +54,7 @@
       </button>
       <button
         routerLink="cart"
+        (click)="cartState = 'closed'"
         class="bg-green-600 text-white rounded-full w-9 h-9 hover:bg-green-800 transition-all duration-200"
       >
         <mat-icon>shopping_cart</mat-icon>

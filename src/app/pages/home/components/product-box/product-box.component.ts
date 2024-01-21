@@ -18,6 +18,7 @@ export class ProductBoxComponent {
   constructor(private cartService: CartService) {}
 
   addToCart(item: Product) {
-    this.cartService.addToCart(item);
+    const newItem = { ...item, quantity: 1 };
+    this.cartService.addToCart(newItem);
   }
 }

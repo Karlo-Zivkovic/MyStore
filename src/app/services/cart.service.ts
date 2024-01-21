@@ -13,7 +13,9 @@ export class CartService {
     return this.cart;
   }
 
+
   addToCart(item: Product) {
+
     let sameItem: Product | undefined = this.cart.find(
       (el) => el.id === item.id,
     );
@@ -27,7 +29,7 @@ export class CartService {
   }
 
   clearCart() {
-    this.cart = [];
+    this.cart.length = 0;
     this.cartSubject.next([]);
   }
 

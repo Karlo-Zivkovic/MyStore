@@ -84,6 +84,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   clearCart() {
+    this.cartState = 'closed';
     this.cartService.clearCart();
   }
 

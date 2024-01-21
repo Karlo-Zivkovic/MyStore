@@ -85,7 +85,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       .getAllProducts(this.limit, this.sort, this.category)
       .subscribe(
         (_products) => {
-          this.isLoading = false
+          this.isLoading = false;
           const productsWithQuantity = _products.map((product) => ({
             ...product,
             quantity: 1,
@@ -127,7 +127,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   handleColsChange(numCols: number) {
     this.cols = numCols;
-    console.log(this.cols);
   }
 
   onGetCategory(category: string) {
