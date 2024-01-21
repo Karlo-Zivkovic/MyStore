@@ -81,6 +81,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getProducts() {
     this.isLoading = true;
+    if (this.category === 'All') this.category = undefined;
     this.productsSubscription = this.storeService
       .getAllProducts(this.limit, this.sort, this.category)
       .subscribe(

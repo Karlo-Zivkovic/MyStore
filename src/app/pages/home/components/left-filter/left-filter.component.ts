@@ -19,7 +19,7 @@ export class LeftFilterComponent implements OnInit {
   ngOnInit(): void {
     this.storeService
       .getAllCategories()
-      .subscribe((categories) => (this.categories = categories));
+      .subscribe((categories) => (this.categories = [ 'All',...categories ]));
   }
 
   setCategory(category: string) {
