@@ -4,6 +4,8 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LeftFilterComponent } from './pages/home/components/left-filter/left-filter.component';
+import { Product } from './models/product.model';
+import { CartService } from './services/cart.service';
 
 @Component({
   selector: 'app-root',
@@ -21,4 +23,5 @@ import { LeftFilterComponent } from './pages/home/components/left-filter/left-fi
 export class AppComponent {
   title = 'store';
 
+  constructor() {}
 }
