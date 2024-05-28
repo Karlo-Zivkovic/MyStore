@@ -9,10 +9,8 @@ Filtering the items based on category. Choosing different number of displayed it
 - <b>Typescript</b>
 - <b>Tailwind</b>
 
-<h2>HOW TO START:</h2>
-
-- <b>npm install</b>
-- <b>ng serve</b>
+<h2>DEPLOYED:</h2>
+- <b>https://store-org.netlify.app</b> 
 
 <h2>Project screenshot</h2>
 
